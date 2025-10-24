@@ -68,7 +68,7 @@ public class PersistenciaInasistencia {
 
     }
     
-    public void mostrarInasistencia(int id) throws Exception {
+    public void mostrarInasistenciaAdmin(int id) throws Exception {
         InasistenciaDocente inasis = new InasistenciaDocente();
         Connection con;
         try {
@@ -86,6 +86,41 @@ public class PersistenciaInasistencia {
                 
 
                 inasis.setID(id);
+                inasis.setNombre(Nombre);
+                inasis.setApellido(Apellido);
+                inasis.setCedula(Cedula);
+                inasis.setTurno(Turno);
+                inasis.setFechaDeInicio(FechaDeInicio);
+                inasis.setFechaDeFinalización(FechaDeFinalizacion);
+                
+            } else {
+                throw new DBException("El producto no esta ingresado, por favor ingreselo");
+            }
+            con.close();
+        } catch (DBException e) {
+
+            throw new DBException("No pude obtener el producto");
+        }
+
+        //return inasis;
+    }
+    
+    public void mostrarInasistenciausuario(int cedula) throws Exception {
+        InasistenciaDocente inasis = new InasistenciaDocente();
+        Connection con;
+        try {
+            con = cone.getConnection();
+            ps = (PreparedStatement) con.prepareStatement(SQLMostrar);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String Nombre = rs.getString("nombre");
+                String Apellido = rs.getString("apellido");
+                int Cedula = rs.getInt("cedula");
+                String Turno = rs.getString("turno");
+                Date FechaDeInicio = rs.getDate("fecha_inicio");
+                Date FechaDeFinalizacion = rs.getDate("fecha_final");
+                
+
                 inasis.setNombre(Nombre);
                 inasis.setApellido(Apellido);
                 inasis.setCedula(Cedula);
