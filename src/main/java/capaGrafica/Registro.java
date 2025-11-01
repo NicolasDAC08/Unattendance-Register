@@ -228,26 +228,30 @@ public class Registro extends javax.swing.JFrame {
         int cedula = Integer.parseInt(CedulaDocente.getText());
         
             inasis.setCI(cedula);
-            inasis.setNombre(NombreDocente.getText());
-            inasis.setApellido(ApellidoDocente.getText());
-            inasis.setTurno(TurnoAfectado.getText());
-            inasis.setFechaDeInicio(FechaInicio.getText());
-            inasis.setFechaDeFinalizacion(FechaFinalizacion.getText());
+            inasis.setNombre(NombreDocente.getText().trim());
+            inasis.setApellido(ApellidoDocente.getText().trim());
+            inasis.setTurno(TurnoAfectado.getText().trim());
+            inasis.setFechaDeInicio(FechaInicio.getText().trim());
+            inasis.setFechaDeFinalizacion(FechaFinalizacion.getText().trim());
             
             FachadaLogica logica = new FachadaLogica();
-            
             logica.guardarInasistencias(inasis);
     
-     JOptionPane.showMessageDialog(this, "Inasistencia publicada correctamente");
+            JOptionPane.showMessageDialog(this, "Inasistencia publicada correctamente");
+            
+            NombreDocente.setText("");
+            ApellidoDocente.setText("");
+            CedulaDocente.setText("");
+            TurnoAfectado.setText("");
+            FechaInicio.setText("");
+            FechaFinalizacion.setText("");
 
-            }catch (Exception ex) {
-
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Error: La cédula debe contener solo números");
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
-                JOptionPane.showMessageDialog(this, "No se pudo guardar la inasistencia");
-
             }
- 
-      }
+        }
     }//GEN-LAST:event_BtnIngresarActionPerformed
 
     private void BtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolverActionPerformed

@@ -17,7 +17,7 @@ import java.util.List;
 
 
 public class PersistenciaInasistencia {
-    private static final String SQLGuardar= ("INSERT INTO registro_de_inasistencias.inasistencia_docente(nombre,apellido,cedula,turno,fecha_finalizacion,fecha_inicio,cedula)" + "VALUES(?,?,?,?,?,?)");        
+    private static final String SQLGuardar = "INSERT INTO registro_de_inasistencias.inasistencia_docente(nombre, apellido, turno, fecha_finalizacion, fecha_inicio, cedula) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SQL_ELIMINAR = ("DELETE FROM productos WHERE id= ?");
     private static final String SQLMostrar= ("Select * FROM registro_de_inasistencias.inasistencia_docente WHERE id =? AND nombre=? AND apellido=? AND turno=? AND fecha_inicio=? AND fecha_finalizacion=? AND cedula=?");
     public Conexion cone = new Conexion();
@@ -27,20 +27,30 @@ public class PersistenciaInasistencia {
     
     public void guardarInasistencias(InasistenciaDocente inasis) throws Exception,SQLException {     
         try {
-            int resultado = 0;
-   
             Connection con = Conexion.getConnection();
             ps = (PreparedStatement) con.prepareStatement(SQLGuardar);
+            
+            int resultado = 0;
+            
             ps.setString(1, inasis.getNombre());
             ps.setString(2, inasis.getApellido());
             ps.setString(3, inasis.getTurno());
             ps.setString(4, inasis.getFechaDeFinalizacion());
             ps.setString(5, inasis.getFechaDeInicio());
             ps.setInt(6, inasis.getCI());
+            
             resultado = ps.executeUpdate();
+            
+            ps.close();
+            
+            if (resultado == 0) {
+                throw new Exception("No se pudo guardar la inasistencia en la base de datos.");
+            }
+            
         } catch (SQLException e) {
-            throw new Exception("Error al registrar inaistencia, Intentelo de nuevo mas tarde.");
-
+            System.err.println("Error SQL: " + e.getMessage());
+            System.err.println("Código SQL: " + e.getSQLState());
+            throw new Exception("Error al registrar inaistencia, Verifique los datos e intentelo de nuevo.");       
         }
     }
     

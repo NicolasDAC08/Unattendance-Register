@@ -113,7 +113,8 @@ public class TablaDeDatos extends javax.swing.JFrame {
         modelo.addColumn("Turno");
         modelo.addColumn("Fecha de inicio");
         modelo.addColumn("Fecha de finalización");
-
+        
+        
         tabladedatos.setModel(modelo);
 
         try {
