@@ -276,6 +276,14 @@ public class Registro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error: El nombre y el apellido no pueden contener numeros.");
                 return;
             }
+
+            //verifica si la cedula tiene 8 digitos con una
+            String cedulaText = CedulaDocente.getText().trim();
+            //        experesion regular⬇️
+            if (!cedulaText.matches("\\d{8}")) {
+                JOptionPane.showMessageDialog(this, "Error: La cédula debe contener exactamente 8 dígitos."
+                return;
+            }
             
             //estructura para obtener los turnos con los botones de matutino vespertino y nocturno
             StringBuilder turnosSeleccionados = new StringBuilder();
