@@ -25,6 +25,7 @@ public class Registro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         configuracionParaLaSeleccionDeFechas();
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
