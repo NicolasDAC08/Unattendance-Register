@@ -129,7 +129,7 @@ public class TablaDeDatosAdmin extends javax.swing.JFrame {
 
     private void eliminarinasistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarinasistenciaActionPerformed
             try {
-            // esta es una ventana emergente para pedir el ID para eliminar
+            //esta es una ventana emergente para pedir el ID para eliminar
             String input = JOptionPane.showInputDialog(this, "Ingrese el ID de la inasistencia a eliminar:", "Eliminar Inasistencia", 
                 JOptionPane.QUESTION_MESSAGE);
             //si lo que puso el usuario esta vacio lo returnea
@@ -161,7 +161,7 @@ public class TablaDeDatosAdmin extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE);
             
-            //si la opcion era yes elimina la inasistencia llamando la clase persistencia y llamando la funcion sql de eliminar inasistencia
+            //si la opcion era yes elimina la inasistencia llamando la clase persistencia y ejecutando la funcion sql de eliminar inasistencia
             if (confirmacion == JOptionPane.YES_OPTION) {
                 PersistenciaInasistencia persistencia = new PersistenciaInasistencia();
                 boolean eliminado = persistencia.eliminarInasistencia(id);
@@ -186,7 +186,7 @@ public class TablaDeDatosAdmin extends javax.swing.JFrame {
 
     // TABLA PARA MOSTRAR INASISTENCIAS NO BORRAR!!1!!1
     private void cargarInasistencias() {
-        // modelo no editable
+        //modelo no editable
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -224,10 +224,11 @@ public class TablaDeDatosAdmin extends javax.swing.JFrame {
                 modelo.addRow(fila);
             }
         
-        //catch para ejecutar un codigo de error si no se pudo ejecutar el bloque de codigo anterior
+        //catch para manejo de excepciones
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.getMessage());
         }
+        
         tabladedatos.setEnabled(true); //tabla habilitada
         tabladedatos.getTableHeader().setReorderingAllowed(false); //no reordenar columnas
         tabladedatos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //seleccion simple (solo te permite seleccionar una cosa a la vez)

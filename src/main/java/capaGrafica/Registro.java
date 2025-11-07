@@ -277,7 +277,7 @@ public class Registro extends javax.swing.JFrame {
                 return;
             }
             
-            //metodo para obtener los turnos con los botones de matutino vespertino y nocturno
+            //estructura para obtener los turnos con los botones de matutino vespertino y nocturno
             StringBuilder turnosSeleccionados = new StringBuilder();
             
             if (btnmatutino.isSelected()) {
@@ -299,10 +299,12 @@ public class Registro extends javax.swing.JFrame {
                 return;
             }
             
+            //clase propia de java para verificar el formato de fecha
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            //fexliviliza la fecha que ingresa el usuario
             sdf.setLenient(false);
             
-            //convierte la cedula a entero y maneja la excepcion de formato incorrecto
+            //convierte la cedula a entero
             int cedula = Integer.parseInt(CedulaDocente.getText().trim());
             
             
@@ -310,17 +312,17 @@ public class Registro extends javax.swing.JFrame {
             java.util.Date utilFechaInicio = (java.util.Date) spinnerFechaInicio.getValue();
             java.util.Date utilFechaFinalizacion = (java.util.Date) spinnerFechaFinalizacion.getValue();
         
-            //convertir a formato java.sql.Date
+            //convertir la variable de utilFechaInicio / FechaFinalizacion de java.util.Date a java.sql.Date
             java.sql.Date sqlFechaInicio = new java.sql.Date(utilFechaInicio.getTime());
             java.sql.Date sqlFechaFinalizacion = new java.sql.Date(utilFechaFinalizacion.getTime());
                        
-            //valida que inicio no sea despues de finalizacion
+            //valida que fecha inicio no sea despues de fecha finalizacion
             if (utilFechaInicio.after(utilFechaFinalizacion)) {
                 JOptionPane.showMessageDialog(this, "Error: La fecha de inicio no puede ser posterior a la fecha de finalización");
                 return;
             }
             
-            //llama a la calse FachadaLogica
+            //llama a la clase FachadaLogica
             FachadaLogica logica = new FachadaLogica();
             
             //llama a la clase inasistenciadocente
@@ -335,7 +337,7 @@ public class Registro extends javax.swing.JFrame {
             inasis.setFechaDeInicio(sqlFechaInicio);
             inasis.setFechaDeFinalizacion(sqlFechaFinalizacion);
             
-            //llama al metodo de fachada logica, guardar inasistencias
+            //ejecuta el metodo de fachada logica, guardar inasistencias
             logica.guardarInasistencias(inasis);
             
             //confirma al usuario

@@ -111,10 +111,10 @@ public class RegistroDeNuevoUsuario extends javax.swing.JFrame {
 
     private void registrarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarusuarioActionPerformed
         try {
-        //crea una variable que parsea la cedula con un int
+        //convertir lo que ingreso el usuario en entero
         int usuario = Integer.parseInt(cedulanuevousuario.getText());
         
-        //crea una variable en string para la cedula
+        //crea una variable para setear la cedula a string
         String cedulaus = cedulanuevousuario.getText();
         
         //verifica si los campos de textos estan vacios
@@ -123,7 +123,7 @@ public class RegistroDeNuevoUsuario extends javax.swing.JFrame {
             return;
         }
         
-        //validacion para que solo acepte numeros
+        //validacion para que solo acepte 8 numeros
         if (!cedulaus.matches("\\d+{8}")) {
             JOptionPane.showMessageDialog(null, "Error: La cedula solo puede contener 8 numeros.");
             limpiar();
@@ -132,7 +132,7 @@ public class RegistroDeNuevoUsuario extends javax.swing.JFrame {
 
         //llama fachada logica
         FachadaLogica fachada= new FachadaLogica();
-        //llama a la clase usuario
+        //llama al metodo login
         Usuario login = new Usuario();
         //setea lo que el usuario ingreso en el objeto cedula de usuario
         login.setCedula(usuario);
