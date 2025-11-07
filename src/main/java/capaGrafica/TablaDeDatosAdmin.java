@@ -28,6 +28,7 @@ public class TablaDeDatosAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         PersistenciaInasistencia persistencia = new PersistenciaInasistencia();
         persistencia.programarLimpiezaAutomatica();
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
