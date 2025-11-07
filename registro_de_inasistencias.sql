@@ -21,9 +21,9 @@ SET time_zone = "+00:00";
 -- Base de datos: `registro_de_inasistencias`
 --
 
-create database registro_de_inasistencias
+create database registro_de_inasistencias;
 
-use registro_de_inasistencias
+use registro_de_inasistencias;
 
 -- --------------------------------------------------------
 
