@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Calendar;
+import java.util.Date;
 
 
 
@@ -20,6 +21,7 @@ public class PersistenciaInasistencia {
     private static final String SQLGuardar = "INSERT INTO registro_de_inasistencias.inasistencia_docente(nombre, apellido, turno, fecha_finalizacion, fecha_inicio, cedula) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SQL_ELIMINAR = "DELETE FROM registro_de_inasistencias.inasistencia_docente WHERE id = ?";
     private static final String SQLMostrar = "SELECT * FROM registro_de_inasistencias.inasistencia_docente";
+    private static final String SQLCountCedula = "SELECT COUNT(*) FROM registro_de_inasistencias.inasistencia_docente WHERE cedula = ?";
     
     //EXPERIMENTAL !!!!
     //*
@@ -122,7 +124,7 @@ public class PersistenciaInasistencia {
     
 
     //EXPERIMENTAL !!!!!!!1
-    // Método para eliminar inasistencias expiradas
+    //método para eliminar inasistencias expiradas
     public int eliminarInasistenciasExpiradas() throws Exception {
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(SQLELIMINAR_EXPIRADAS)) {
@@ -134,11 +136,10 @@ public class PersistenciaInasistencia {
         }
     }
     
-    // Programar tarea automática - CORREGIDO
     public void programarLimpiezaAutomatica() {
         
-        // Usar java.util.Timer para tareas programadas
-        java.util.Timer timer = new java.util.Timer(true); // true = daemon timer
+        //usar java.util.Timer para tareas programadas
+        java.util.Timer timer = new java.util.Timer(true);
         
         java.util.TimerTask tarea = new java.util.TimerTask() {
             @Override
@@ -154,16 +155,18 @@ public class PersistenciaInasistencia {
             }
         };
         
-        // Programar para ejecutar todos los días a la 1:00 AM
+        //programar para ejecutar todos los días a la 1:00 AM
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 1);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         
         
-        timer.scheduleAtFixedRate(tarea, calendar.getTime(), 24 * 60 * 60 * 1000); // Cada 24 horas
+        timer.scheduleAtFixedRate(tarea, calendar.getTime(), 24 * 60 * 60 * 1000); //cada 24 horas
     }
     
     //EXPERIMENTAL !!!!!!!!
+    
+    
 }
 

@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 public class PersistenciaAdscripcion {
     
-    
-    
     private static final String SQL_Registrar = ("INSERT INTO registro_de_inasistencias.usuario(cedula)VALUES (?)");
     private static final String SQL_Iniciar = ("SELECT * FROM registro_de_inasistencias.adscripto WHERE cedula = ? AND contrasenia = ?");
     
@@ -20,7 +18,8 @@ public class PersistenciaAdscripcion {
     public ResultSet rs;
     
     
-        public Boolean Iniciar(String contrasenia, String cedula) throws Exception {
+    public Boolean Iniciar(String contrasenia, String cedula) throws Exception {
+        
         Boolean valido = false;
         
         try (Connection con = cone.getConnection();

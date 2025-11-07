@@ -13,6 +13,7 @@ import capaPersistencia.PersistenciaInasistencia;
  * @author Usuario
  */
 public class FachadaLogica {
+    
 
     public void guardarInasistencias(InasistenciaDocente prop) throws Exception {
         PersistenciaInasistencia inasis = new PersistenciaInasistencia();

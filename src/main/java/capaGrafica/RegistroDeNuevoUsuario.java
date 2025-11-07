@@ -123,6 +123,13 @@ public class RegistroDeNuevoUsuario extends javax.swing.JFrame {
             return;
         }
         
+        //validacion para que solo acepte numeros
+        if (!cedulaus.matches("\\d+{8}")) {
+            JOptionPane.showMessageDialog(null, "Error: La cedula solo puede contener 8 numeros.");
+            limpiar();
+            return;
+        }        
+
         //llama fachada logica
         FachadaLogica fachada= new FachadaLogica();
         //llama a la clase usuario
@@ -135,6 +142,8 @@ public class RegistroDeNuevoUsuario extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "El nuevo usuario ha sido registrado exitosamente.");
         
         //catch para manejo de exceptions
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Error: La cédula debe contener solo números y máximo 8 dígitos.");
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(null, "Ocurrio un error: " + ex.getMessage());
     }

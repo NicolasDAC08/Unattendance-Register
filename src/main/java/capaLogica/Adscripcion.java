@@ -9,8 +9,8 @@ package capaLogica;
  * @author octavio
  */
 public class Adscripcion {
-    String Contrasenia;
-    int Cedula;
+    private String Contrasenia;
+    private int Cedula;
 
     public int getCedula() {
         return Cedula;

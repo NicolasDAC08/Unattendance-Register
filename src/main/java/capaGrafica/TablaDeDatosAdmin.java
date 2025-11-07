@@ -8,6 +8,7 @@ import capaLogica.InasistenciaDocente;
 import capaPersistencia.PersistenciaInasistencia;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -185,8 +186,14 @@ public class TablaDeDatosAdmin extends javax.swing.JFrame {
 
     // TABLA PARA MOSTRAR INASISTENCIAS NO BORRAR!!1!!1
     private void cargarInasistencias() {
-        //crea la tabla
-        DefaultTableModel modelo = new DefaultTableModel();
+        // modelo no editable
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
@@ -221,6 +228,9 @@ public class TablaDeDatosAdmin extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.getMessage());
         }
+        tabladedatos.setEnabled(true); //tabla habilitada
+        tabladedatos.getTableHeader().setReorderingAllowed(false); //no reordenar columnas
+        tabladedatos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //seleccion simple (solo te permite seleccionar una cosa a la vez)
     }
 
 
