@@ -20,6 +20,7 @@ public class RegistroDeNuevoUsuario extends javax.swing.JFrame {
     public RegistroDeNuevoUsuario() {
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
     
     private void limpiar() {
