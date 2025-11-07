@@ -18,6 +18,7 @@ public class InterfazDeEleccion extends javax.swing.JFrame {
     public InterfazDeEleccion() {
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     /**
