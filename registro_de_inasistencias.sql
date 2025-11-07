@@ -64,7 +64,7 @@ CREATE TABLE `inasistencia_docente` (
 --
 
 INSERT INTO `inasistencia_docente` (`id`, `nombre`, `apellido`, `turno`, `fecha_finalizacion`, `fecha_inicio`, `cedula`) VALUES
-(17, 'djhsjad', 'jghfjgkd', 'Matutino', '2025-12-12', '2025-12-11', 7827218);
+(17, 'Marcela', 'Mederos', 'Matutino', '2025-12-12', '2025-12-11', 46191437);
 
 -- --------------------------------------------------------
 
